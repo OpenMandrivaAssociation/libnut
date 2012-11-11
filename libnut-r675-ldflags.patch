@@ -1,0 +1,11 @@
+--- libnut/Makefile.ldflags~	2011-11-24 10:10:02.307485686 +0100
++++ libnut/Makefile	2011-11-24 10:11:08.570031093 +0100
+@@ -14,7 +14,7 @@ libnut/libnut.a: $(LIBNUT_OBJS)
+ 	$(RANLIB) $@
+ 
+ libnut/libnut.so: $(LIBNUT_OBJS)
+-	$(CC) $(CFLAGS) -shared -Wl,--export-dynamic -Wl,-soname -Wl,libnut.so.0 $^ -o libnut/libnut.so.0
++	$(CC) $(CFLAGS) $(LDFLAGS) -shared -Wl,--export-dynamic -Wl,-soname -Wl,libnut.so.0 $^ -o libnut/libnut.so.0
+ 	ln -s -f libnut.so.0 $@
+ 
+ $(LIBNUT_OBJS): libnut/priv.h libnut/libnut.h

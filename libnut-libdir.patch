@@ -1,0 +1,48 @@
+--- Makefile
++++ Makefile
+@@ -28,16 +28,16 @@
+ install: install-libnut install-nututils
+ 
+ install-libnut: libnut install-libnut-headers
+-	install -d $(prefix)/lib
+-	install -m 644 libnut/libnut.a $(prefix)/lib
++	install -d $(libdir)
++	install -m 644 libnut/libnut.a $(libdir)
+ 
+ install-libnut-shared: libnut/libnut.so install-libnut-headers
+-	install -d $(prefix)/lib
+-	install -m 644 libnut/libnut.so $(prefix)/lib
++	install -d $(libdir)
++	install -m 644 libnut/libnut.so $(libdir)
+ 
+ install-libnut-headers:
+-	install -d $(prefix)/include
+-	install -m 644 libnut/libnut.h $(prefix)/include
++	install -d $(includedir)
++	install -m 644 libnut/libnut.h $(includedir)
+ 
+ install-nututils: nututils
+ 	install -d $(prefix)/bin
+@@ -46,9 +46,9 @@
+ uninstall: uninstall-libnut uninstall-nututils
+ 
+ uninstall-libnut:
+-	rm -f $(prefix)/lib/libnut.a
+-	rm -f $(prefix)/lib/libnut.so
+-	rm -f $(prefix)/include/libnut.h
++	rm -f $(libdir)/libnut.a
++	rm -f $(libdir)/libnut.so
++	rm -f $(includedir)/libnut.h
+ 
+ uninstall-nututils:
+ 	rm -f $(addprefix $(prefix)/bin/, $(subst nututils/,,$(NUTUTILS_PROGS)))
+--- config.mak
++++ config.mak
+@@ -1,5 +1,7 @@
+ PREFIX = /usr/local
+ prefix = $(DESTDIR)$(PREFIX)
++libdir = $(prefix)/lib
++includedir = $(prefix)/include
+ 
+ #CFLAGS += -DDEBUG
+ 

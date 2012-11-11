@@ -1,0 +1,45 @@
+--- libnut/Makefile.shared~	2011-11-24 10:07:13.436675802 +0100
++++ libnut/Makefile	2011-11-24 10:07:21.805800806 +0100
+@@ -6,7 +6,7 @@ NUTMERGE_OBJS = nututils/nutmerge.o nutu
+ 
+ all: libnut nututils
+ 
+-libnut: libnut/libnut.a
++libnut: libnut/libnut.a libnut/libnut.so
+ 
+ libnut/libnut.a: $(LIBNUT_OBJS)
+ 	rm -f $@
+@@ -14,26 +14,29 @@ libnut/libnut.a: $(LIBNUT_OBJS)
+ 	$(RANLIB) $@
+ 
+ libnut/libnut.so: $(LIBNUT_OBJS)
+-	$(CC) $(CFLAGS) -shared $^ -o $@
++	$(CC) $(CFLAGS) -shared -Wl,--export-dynamic -Wl,-soname -Wl,libnut.so.0 $^ -o libnut/libnut.so.0
++	ln -s -f libnut.so.0 $@
+ 
+ $(LIBNUT_OBJS): libnut/priv.h libnut/libnut.h
++$(LIBNUT_OBJS): CFLAGS += -fPIC -DPIC
+ 
+ nututils: $(NUTUTILS_PROGS)
+ 
+ $(NUTMERGE_OBJS): nututils/nutmerge.h
+-nututils/nutmerge: $(NUTMERGE_OBJS) libnut/libnut.a
++nututils/nutmerge: $(NUTMERGE_OBJS) libnut/libnut.so
+ 
+ $(NUTUTILS_PROGS): CFLAGS += -Ilibnut
+ 
+ install: install-libnut install-nututils
+ 
+-install-libnut: libnut install-libnut-headers
++install-libnut: libnut install-libnut-shared install-libnut-headers
+ 	install -d $(libdir)
+ 	install -m 644 libnut/libnut.a $(libdir)
+ 
+ install-libnut-shared: libnut/libnut.so install-libnut-headers
+ 	install -d $(libdir)
+-	install -m 644 libnut/libnut.so $(libdir)
++	install -m 755 libnut/libnut.so.0 $(libdir)
++	ln -s -f libnut.so.0 $(libdir)/libnut.so
+ 
+ install-libnut-headers:
+ 	install -d $(includedir)
