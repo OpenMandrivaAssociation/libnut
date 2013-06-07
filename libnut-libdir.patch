@@ -1,5 +1,5 @@
---- Makefile
-+++ Makefile
+--- ./Makefile
++++ ./Makefile
 @@ -28,16 +28,16 @@
  install: install-libnut install-nututils
  
@@ -36,8 +36,8 @@
  
  uninstall-nututils:
  	rm -f $(addprefix $(prefix)/bin/, $(subst nututils/,,$(NUTUTILS_PROGS)))
---- config.mak
-+++ config.mak
+--- ./config.mak
++++ ./config.mak
 @@ -1,5 +1,7 @@
  PREFIX = /usr/local
  prefix = $(DESTDIR)$(PREFIX)
