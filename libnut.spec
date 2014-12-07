@@ -6,7 +6,7 @@
 Summary:	NUT Multimedia Container Library
 Name:		libnut
 Version:	0.0.%{svnrev}
-Release:	11
+Release:	12
 License:	MIT
 Group:		System/Libraries
 Url:		http://wiki.multimedia.cx/index.php?title=NUT
