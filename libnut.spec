@@ -1,17 +1,17 @@
-%define	svnrev	675
+%define	gitrev	20160626
 %define	major	0
 %define	libname	%mklibname nut %{major}
 %define	devname	%mklibname -d nut
 
 Summary:	NUT Multimedia Container Library
 Name:		libnut
-Version:	0.0.%{svnrev}
-Release:	15
+Version:	0.0.%{gitrev}
+Release:	1
 License:	MIT
 Group:		System/Libraries
 Url:		http://wiki.multimedia.cx/index.php?title=NUT
-# svn checkout svn://svn.mplayerhq.hu/nut/src/trunk libnut ; tar -Jcf libnut-r$(LC_ALL=C svn info libnut | sed -n 's/Revision: //p').tar.xz libnut
-Source0:	%{name}-r%{svnrev}.tar.xz
+# git clone git://git.ffmpeg.org/nut ; cd nut/src ; mv trunk libnut ; tar cf libnut-$(date +%Y%m%d).tar libnut ; xz -9ef *.tar ; mv libnut trunk
+Source0:	%{name}-%{gitrev}.tar.xz
 Patch0:		libnut-libdir.patch
 Patch1:		libnut-shared.patch
 Patch2:		libnut-r675-ldflags.patch
