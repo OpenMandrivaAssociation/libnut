@@ -5,7 +5,7 @@
 
 Summary:	NUT Multimedia Container Library
 Name:		libnut
-Version:	0.0.%{gitrev}
+Version:	661
 Release:	1
 License:	MIT
 Group:		System/Libraries
