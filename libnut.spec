@@ -66,7 +66,7 @@ encoded media frames.
 
 %prep
 %setup -qn %{name}
-%apply_patches
+%autopatch -p1
 
 %build
 %setup_compile_flags
