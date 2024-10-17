@@ -9,7 +9,7 @@ Version:	661
 Release:	2
 License:	MIT
 Group:		System/Libraries
-Url:		http://wiki.multimedia.cx/index.php?title=NUT
+Url:		https://wiki.multimedia.cx/index.php?title=NUT
 # git clone git://git.ffmpeg.org/nut ; cd nut/src ; mv trunk libnut ; tar cf libnut-$(date +%Y%m%d).tar libnut ; xz -9ef *.tar ; mv libnut trunk
 Source0:	%{name}-%{gitrev}.tar.xz
 Patch0:		libnut-libdir.patch
