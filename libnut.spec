@@ -16,6 +16,7 @@ Patch0:		libnut-libdir.patch
 Patch1:		libnut-shared.patch
 Patch2:		libnut-r675-ldflags.patch
 
+BuildRequires:	make
 %description
 Library for manipulation with NUT multimedia streams.
 
